@@ -24,10 +24,6 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  return new NextResponse("Auth Required.", {
-    status: 401,
-    headers: {
-      "WWW-authenticate": 'Basic realm="Secure Area"',
-    },
-  });
+  url.pathname = "/api/auth";
+  return NextResponse.rewrite(url);
 }
